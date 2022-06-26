@@ -21,4 +21,5 @@ module.exports = {
     pcm12: require('./pcm12'),
     bat: require('./bat'),
     b3u1000p: require('./b3u1000p'),
+    uxcellsmdspst: require('./uxcellsmdspst'),
 }
