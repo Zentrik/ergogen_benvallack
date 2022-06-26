@@ -230,17 +230,27 @@ pcbs:
           from: pos
           to: RAW
         params:
-          reverse: true 
+          reverse: true
       reset:
-        #TODO: Make sure dimensions are correct!!    
+        # TODO: Make sure dimensions are correct!!
         type: uxcellsmdspst
         nets:
-          r1: RST  
+          r1: RST
           r2: GND
         anchor:
-          ref: 
+          ref:
             - matrix_inner_bottom
           shift: [17, 0]
           rotate: 90
         params:
-          reverse: true 
+          reverse: true
+      bat:
+        # TODO: Double check dimensions and add component outline
+        type: bat2p54
+        nets:
+          neg: GND
+        anchor:
+          ref:
+            - matrix_inner_bottom
+          shift: [22, 0]
+          rotate: 90
