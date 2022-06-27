@@ -1,10 +1,11 @@
 units:
-  kx: cx
-  ky: cy
   px: 2
   py: 2
 points:
   key:
+    padding: cy
+    tags: 
+      1u: true
     footprints:
       choc_hotswap:
         type: choc
@@ -28,38 +29,43 @@ points:
           shift: [0, -5]
   zones:
     matrix:
-      key.padding: ky
       columns:
         outer:
-          stagger: 0 ky
-          spread: kx
+          stagger: 0 cy
+          spread: cx
           key:
             column_net: P14
+            bind: [0,1,0,1]
         pinky:
-          stagger: 0 ky
-          spread: kx
+          stagger: 0 cy
+          spread: cx
           key:
             column_net: P20
+            bind: [0,1,0,1]
         ring:
           stagger: 6.56
-          spread: kx
+          spread: cx
           key:
             column_net: P19
+            bind: [0,1,0,1]
         middle:
           stagger: 2.36
-          spread: kx
+          spread: cx
           key:
             column_net: P18
+            bind: [0,1,0,1]
         index:
           stagger: -2.36
-          spread: kx
+          spread: cx
           key:
             column_net: P15
+            bind: [0,1,0,1]
         inner:
           stagger: -2.38
-          spread: kx
+          spread: cx
           key:
             column_net: P14
+            bind: [0,1,0,1]
       rows:
         bottom:
           row_net: P6
@@ -70,29 +76,32 @@ points:
     thumbfan:
       anchor:
         ref: matrix_inner_bottom
-        shift: [-2 kx - 5.9, -ky - 0.59]
+        shift: [-2 cx - 5.9, -cy - 0.59]
       rows:
         thumb:
           row_net: P7
       columns:
         near:
-          spread: kx
-          origin: [-0.5 kx, -0.5 ky]
+          spread: cx
+          origin: [-0.5 cx, -0.5 cy]
           key:
             column_net: P18
         home:
-          spread: kx + 0.463
+          spread: cx + 0.463
           rotate: -15
-          origin: [-0.5 kx, -0.5 ky]
+          origin: [-0.5 cx, -0.5 cy]
           key:
             column_net: P15
         far:
-          spread: kx + 2.245
+          spread: cx + 2.245
           rotate: -15
           stagger: 3.786
-          origin: [-0.5 kx, -0.5 ky]
+          origin: [-0.5 cx, -0.5 cy]
           key:
             column_net: P14
+            tags: 
+              1u: false
+              15u: true
           rows:
             thumb:
               rotate: 90
@@ -102,121 +111,91 @@ outlines:
     raw:
       - type: keys
         side: left
-        size: [kx + px, ky + py]
-        corner: px
+        #size: [cx + px, cy + py]
+        size: [cx, cy]
+        #corner: px
     thumbfan_glue:
       - type: polygon
         points:
           - ref: matrix_inner_bottom
-            shift: [0.5 kx + 0.5px, -0.5 ky + 0.5 py]
+            shift: [0.5 cx + 0.5px, -0.5 cy + 0.5 py]
           - ref: thumbfan_far_thumb
-            shift: [0.5 kx - 0.5px, 0.5 ky + 0.5 py]
+            shift: [0.5 cx - 0.5px, 0.5 cy + 0.5 py]
           - ref: thumbfan_far_thumb
-            shift: [0.5 kx - 0.5px, -0.5 ky - 0.5 py]
+            shift: [0.5 cx - 0.5px, -0.5 cy - 0.5 py]
           - ref: thumbfan_near_thumb
-            shift: [-0.5 kx + 0.5 px, -0.5 ky - 0.5 py]
+            shift: [-0.5 cx + 0.5 px, -0.5 cy - 0.5 py]
           - ref: matrix_pinky_bottom
-            shift: [0.5 kx - 0.5 py, -0.5 ky - 0.5 py]
+            shift: [0.5 cx - 0.5 py, -0.5 cy - 0.5 py]
           - ref: matrix_pinky_home
           - ref: matrix_inner_home
-    patch_outer:
-      - type: polygon
-        points:
-          - ref: matrix_ring_top
-          - ref: matrix_ring_bottom
-          - ref: matrix_pinky_bottom
-            shift: [-0.5 (kx + px), 0]
-          - ref: matrix_pinky_top
-            shift: [-0.5 (kx + px), 0]
-    patch_inner:
-      - type: polygon
-        points:
-          - ref: matrix_inner_top
-            shift: [0.5 (kx + px), 0]
-          - ref: matrix_inner_bottom
-            shift: [0.5 (kx + px), 0]
-          - ref: matrix_index_bottom
-          - ref: matrix_index_top
     controller_area:
+    # TODO: Replace with a polygon
       main:
         type: rectangle
         anchor:
           ref:
             - matrix_inner_top
-          shift: [0 kx, -4.05 ky]
-        size: [32, 76.5]
-        corner: px
+          shift: [0.5 cx, -4.4 cy]
+          rotate: 0
+        size: [1.25cx, (4.4+0.5) cy]
+        #corner: px
     switches:
       main:
         type: keys
         side: left
         size: 14
         bound: false
-    keycaps:
+    keycaps1u:
       main:
         type: keys
         side: left
-        size: [kx, ky]
+        size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
         bound: false
-        corner: 1
+        tags: [1u]
+    keycaps15u:
+      main:
+        type: keys
+        side: left
+        size: [1.5cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false
+        tags: [15u]
+    keycaps_outline:
+      [keycaps1u, keycaps15u]
     keywell:
       main:
         type: outline
         name: raw
-      patch_inner:
-        type: outline
-        name: patch_inner
-        operation: add
-      patch_outer:
-        type: outline
-        name: patch_outer
-        operation: add
       thumbfan_glue:
         type: outline
         name: thumbfan_glue
         operation: add
-    base_outline:
+    pcb_outline:
       main:
         type: outline
         name: keywell
+        # TODO: Fix the fillets at the top of raw
+        fillet: px
       controller:
         type: outline
         name: controller_area
         operation: add
-    pcb:
-      main:
+        fillet: px
+      keycaps_outline:
         type: outline
-        name: base_outline
+        name: keycaps_outline
+        operation: add
+        fillet: px
 pcbs:
-  #top_plate:
-    ## include JLCJLCJLCJLC text somewhere
-    #include_keys: false
-    #outlines:
-      #edge:
-        #outline: plate
-        #layer: Edge.Cuts
-    #footprints:
-      #jlc_order_number:
-        #type: text
-        #anchor:
-          #ref:
-            #- matrix_ring_home
-          #shift: [-0.25 kx, 0.5 ky]
-        #params:
-          #text: "JLCJLCJLCJLC"
-          #justify: left
-  #bottom_plate:
-    #include_keys: false
-    #outlines:
-      #edge:
-        #outline: bottom_outline
-        #layer: Edge.Cuts
   danns87_corne:
     outlines:
       edge:
-        outline: pcb
+        outline: pcb_outline
         layer: Edge.Cuts
         # TODO there's a way to add stuff to the silkscreen layer
+      keycaps:
+        outline: keycaps_outline
+        layer: Eco1.User
     footprints:
       promicro:
         type: promicro_pretty
@@ -259,4 +238,4 @@ pcbs:
           ref:
             - matrix_inner_bottom
           shift: [22, 0]
-          rotate: 90
+
