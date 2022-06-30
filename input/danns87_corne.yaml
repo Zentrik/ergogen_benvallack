@@ -117,29 +117,64 @@ outlines:
     thumbfan_glue:
       - type: polygon
         points:
-          - ref: matrix_inner_bottom
-            shift: [0.5 cx + 0.5px, -0.5 cy + 0.5 py]
-          - ref: thumbfan_far_thumb
-            shift: [0.5 cx - 0.5px, 0.5 cy + 0.5 py]
-          - ref: thumbfan_far_thumb
-            shift: [0.5 cx - 0.5px, -0.5 cy - 0.5 py]
           - ref: thumbfan_near_thumb
-            shift: [-0.5 cx + 0.5 px, -0.5 cy - 0.5 py]
-          - ref: matrix_pinky_bottom
-            shift: [0.5 cx - 0.5 py, -0.5 cy - 0.5 py]
-          - ref: matrix_pinky_home
-          - ref: matrix_inner_home
-    controller_area:
-    # TODO: Replace with a polygon
+            shift: [-0.5 cx,  cy]
+          - ref: thumbfan_near_thumb
+            shift: [-0.5 cx, -0.5 cy]
+          - ref: thumbfan_near_thumb
+            shift: [0.5 cx, -0.5 cy]
+
+          - ref: thumbfan_home_thumb
+            shift: [-0.5 cx, -0.5 cy]
+          - ref: thumbfan_home_thumb
+            shift: [0.5 cx, -0.5 cy]
+
+          # Remember that this key switch is rotated, so 1.5u applies to the X-axis
+          - ref: thumbfan_far_thumb
+            shift: [-0.75 cx, -0.5 cy]
+          - ref: thumbfan_far_thumb
+            shift: [0.77 cx, -0.5 cy]
+          - ref: thumbfan_far_thumb
+            shift: [0.75 cx, 0.5 cy]
+
+          - ref: matrix_inner_bottom
+            shift: [0.5 cx, 0 cy]
+
+          - ref: matrix_ring_bottom
+    
+    # Outline of the microcontroller, for debug purposes
+    raw_promicro:
       main:
         type: rectangle
         anchor:
           ref:
-            - matrix_inner_top
-          shift: [0.5 cx, -4.4 cy]
+            - matrix_inner_bottom
+          shift: [0.5cx + 2.5, -0.5cy + 1]
           rotate: 0
-        size: [1.25cx, (4.4+0.5) cy]
+        size: [17.78, 29.7]
+
+    # Outline of the reset button, for debug purposes
+    raw_reset:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - thumbfan_far_thumb
+          shift: [0.75cx, -3]
+          rotate: 0
+        size: [3, 6]
+
+    controller_area_glue:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - matrix_inner_home
+          shift: [0 cx, -2 cy]
+          rotate: 0
+        size: [1.80cx, (2+0.5) cy]
         #corner: px
+
     switches:
       main:
         type: keys
@@ -175,17 +210,25 @@ outlines:
         type: outline
         name: keywell
         # TODO: Fix the fillets at the top of raw
-        fillet: px
+        #fillet: px
       controller:
         type: outline
-        name: controller_area
+        name: controller_area_glue
         operation: add
-        fillet: px
-      keycaps_outline:
-        type: outline
-        name: keycaps_outline
-        operation: add
-        fillet: px
+        #fillet: px
+      #keycaps_outline:
+      #  type: outline
+      #  name: keycaps_outline
+      #  operation: subtract
+      #  fillet: px
+      #raw_promicro:
+      #  type: outline
+      #  name: raw_promicro
+      #  operation: subtract
+      #raw_reset:
+      #  type: outline
+      #  name: raw_reset
+      #  operation: subtract
 pcbs:
   danns87_corne:
     outlines:
@@ -201,9 +244,10 @@ pcbs:
         type: promicro_pretty
         anchor:
           ref:
-            - matrix_inner_top
-          shift: [20, -11]
-          rotate: 270
+            - matrix_inner_bottom
+          #shift: [0.5cx + 2.5, -0.5cy + 1]
+          shift: [0.5cx + 17.78/2 + 2.5, -0.5cy + 1 + 29.7/2]
+          rotate: -90
       pcm12:
         type: pcm12
         anchor:
@@ -224,8 +268,8 @@ pcbs:
           r2: GND
         anchor:
           ref:
-            - matrix_inner_bottom
-          shift: [17, 0]
+            - thumbfan_far_thumb
+          shift: [0.75cx + 6/2, -3 + 3/2]
           rotate: 90
         params:
           reverse: true
@@ -238,4 +282,5 @@ pcbs:
           ref:
             - matrix_inner_bottom
           shift: [22, 0]
+
 
