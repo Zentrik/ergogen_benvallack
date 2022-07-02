@@ -1,0 +1,291 @@
+units:
+  px: 2
+  py: 2
+points:
+  key:
+    padding: cy
+    tags: 
+      1u: true
+    footprints:
+      choc_hotswap:
+        type: choc
+        params:
+          hotswap: true
+          reverse: true
+          keycaps: true
+        nets:
+          # from: P1
+          # to: P2
+          from: =colrow
+          to: =column_net
+      diode:
+        type: diode
+        nets:
+          # from: P3
+          # to: P4
+          from: =colrow
+          to: =row_net
+        anchor:
+          shift: [0, -5]
+  zones:
+    matrix:
+      columns:
+        outer:
+          stagger: 0 cy
+          spread: cx
+          key:
+            column_net: P14
+            bind: [1,1,1,1]
+        pinky:
+          stagger: 0 cy
+          spread: cx
+          key:
+            column_net: P20
+            bind: [1,1,1,1]
+        ring:
+          stagger: 0.70 cy
+          spread: cx
+          key:
+            column_net: P19
+            bind: [1,1,1,1]
+        middle:
+          stagger: 0.25 cy
+          spread: cx
+          key:
+            column_net: P18
+            bind: [1,1,1,1]
+        index:
+          stagger: -0.25 cy
+          spread: cx
+          key:
+            column_net: P15
+            bind: [1,1,1,1]
+        inner:
+          stagger: -0.2 cy
+          spread: cx
+          key:
+            column_net: P14
+            bind: [1,1,1,1]
+      rows:
+        bottom:
+          row_net: P6
+        home:
+          row_net: P5
+        top:
+          row_net: P4
+    thumbfan:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-2 cx, -1 cy]
+      rows:
+        thumb:
+          row_net: P7
+      columns:
+        near:
+          spread: cx + 0.6
+          stagger: -4.7
+          origin: [-0.5 cx, -0.5 cy]
+          rotate: 15
+          key:
+            column_net: P18
+            bind: [1,1,1,1]
+        home:
+          spread: cx
+          stagger: 0
+          rotate: -15
+          origin: [-0.5 cx, -0.5 cy]
+          key:
+            column_net: P15
+            bind: [1,1,1,1]
+        far:
+          spread: cx
+          stagger: 0
+          rotate: -15
+          origin: [-0.5 cx, -0.5 cy]
+          key:
+            column_net: P14
+            bind: [1,1,1,1]
+            tags: 
+              1u: true
+              15u: false
+          #rows:
+          #  thumb:
+          #    rotate: 90
+outlines:
+  # board dimensions according to JLCPCB: 122.28 mm x 101.05 mm
+  exports:
+    raw:
+      - type: keys
+        side: left
+        #size: [cx + px, cy + py]
+        size: [cx, cy]
+        #corner: px
+    thumbfan_glue:
+      - type: polygon
+        points:
+          - ref: matrix_index_bottom
+            shift: [0.5 cx, 0 cy]
+
+          - ref: thumbfan_near_thumb
+            shift: [0 cx, 0.5 cy]
+          - ref: thumbfan_near_thumb
+            shift: [0 cx, -0.5 cy]
+          - ref: thumbfan_near_thumb
+            shift: [0.5 cx, -0.5 cy]
+
+          - ref: thumbfan_home_thumb
+            shift: [-0.5 cx, -0.5 cy]
+          - ref: thumbfan_home_thumb
+            shift: [0.5 cx, -0.5 cy]
+
+          - ref: thumbfan_far_thumb
+            shift: [-0.5 cx, -0.5 cy]
+          - ref: thumbfan_far_thumb
+            shift: [0 cx, -0.5 cy]
+          - ref: thumbfan_far_thumb
+            shift: [0 cx, 0.5 cy]
+
+          - ref: matrix_index_bottom
+            shift: [1.5 cx, 0 cy]
+
+    # Outline of the microcontroller, for debug purposes
+    raw_promicro:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - matrix_inner_home
+          shift: [0.5cx + 2.5, -0.5cy + 1]
+          rotate: 0
+        size: [17.78, 29.7]
+
+    # Outline of the reset button, for debug purposes
+    raw_reset:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - thumbfan_far_thumb
+          shift: [0.75cx, -3]
+          rotate: 0
+        size: [3, 6]
+
+    controller_area_glue:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [0 cx, -2 cy]
+          rotate: 0
+        size: [1.80cx, (2+0.5) cy]
+        #corner: px
+
+    switches:
+      main:
+        type: keys
+        side: left
+        size: 14
+        bound: false
+    keycaps1u:
+      main:
+        type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false
+        tags: [1u]
+    keycaps15u:
+      main:
+        type: keys
+        side: left
+        size: [1.5cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false
+        tags: [15u]
+    keycaps_outline:
+      [keycaps1u, keycaps15u]
+    keywell:
+      main:
+        type: outline
+        name: raw
+      thumbfan_glue:
+        type: outline
+        name: thumbfan_glue
+        operation: add
+    pcb_outline:
+      main:
+        type: outline
+        name: keywell
+        # TODO: Fix the fillets at the top of raw
+        fillet: 2
+      controller:
+        type: outline
+        name: controller_area_glue
+        operation: add
+        fillet: 2
+      keycaps_outline:
+        type: outline
+        name: keycaps_outline
+        #name: switches
+        operation: subtract
+        fillet: px
+      raw_promicro:
+        type: outline
+        name: raw_promicro
+        operation: subtract
+      #raw_reset:
+      #  type: outline
+      #  name: raw_reset
+      #  operation: subtract
+pcbs:
+  danns87_corne:
+    outlines:
+      edge:
+        outline: pcb_outline
+        layer: Edge.Cuts
+        # TODO there's a way to add stuff to the silkscreen layer
+      keycaps:
+        outline: keycaps_outline
+        layer: Eco1.User
+    footprints:
+      promicro:
+        type: promicro_pretty
+        anchor:
+          ref:
+            - matrix_inner_bottom
+          #shift: [0.5cx + 2.5, -0.5cy + 1]
+          shift: [0.5cx + 17.78/2 + 2.5, -0.5cy + 1 + 29.7/2]
+          rotate: -90
+      pcm12:
+        type: pcm12
+        anchor:
+          ref:
+            - matrix_inner_bottom
+          shift: [30, 0]
+          rotate: 90
+        nets:
+          from: pos
+          to: RAW
+        params:
+          reverse: true
+      reset:
+        # TODO: Make sure dimensions are correct!!
+        type: uxcellsmdspst
+        nets:
+          r1: RST
+          r2: GND
+        anchor:
+          ref:
+            - thumbfan_far_thumb
+          shift: [0.75cx + 6/2, -3 + 3/2]
+          rotate: 90
+        params:
+          reverse: true
+      bat:
+        # TODO: Double check dimensions and add component outline
+        type: bat2p54
+        nets:
+          neg: GND
+        anchor:
+          ref:
+            - matrix_inner_bottom
+          shift: [22, 0]
