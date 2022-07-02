@@ -1924,7 +1924,7 @@
 
         
       (module PG1350 (layer F.Cu) (tedit 5DD50112)
-      (at 104.4562943 16.0290019 -15)
+      (at 104.15029429999998 16.0580019 -15)
 
       
       (fp_text reference "S20" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
@@ -1978,7 +1978,7 @@
     (module ComboDiode (layer F.Cu) (tedit 5B24D78E)
 
 
-        (at 103.1621991 20.858631000000003 -15)
+        (at 102.85619909999998 20.887631 -15)
 
         
         (fp_text reference "D20" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
@@ -2015,7 +2015,7 @@
 
         
       (module PG1350 (layer F.Cu) (tedit 5DD50112)
-      (at 126.14228589999999 20.6315805 60)
+      (at 124.71581489999998 19.120090299999998 60)
 
       
       (fp_text reference "S21" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
@@ -2069,7 +2069,7 @@
     (module ComboDiode (layer F.Cu) (tedit 5B24D78E)
 
 
-        (at 130.4724129 23.1315805 60)
+        (at 129.04594189999997 21.620090299999998 60)
 
         
         (fp_text reference "D21" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
@@ -3732,7 +3732,7 @@
 
 		
 	(module Button_Switch_SMD:SW_SPST_UXCELL (layer F.Cu)
-        (at 135.69132399999998 7.092161299999999 150)
+        (at 134.264853 5.580671099999998 150)
 	  (descr "uxcell 3x6x4mm Momentary PCB SMT Surface Mounted Devices Rectangle Push Button SPST Tactile Tact Switch White 20PCS")
 	  (tags "Tactile Switch")
 	  (attr smd)
@@ -3788,13 +3788,13 @@
 (gr_line (start 100 -49.06) (end 100 -46.68) (angle 90) (layer Edge.Cuts) (width 0.15))
 (gr_line (start 118 -29.68) (end 118 -46.68) (angle 90) (layer Edge.Cuts) (width 0.15))
 (gr_line (start 100 -46.68) (end 118 -46.68) (angle 90) (layer Edge.Cuts) (width 0.15))
-(gr_line (start 75.1 21.91) (end 93.56299999999999 21.91) (angle 90) (layer Edge.Cuts) (width 0.15))
+(gr_line (start 75.1 21.91) (end 93.1 21.91) (angle 90) (layer Edge.Cuts) (width 0.15))
 (gr_line (start 75.1 21.91) (end 75.1 -0.41999999999999993) (angle 90) (layer Edge.Cuts) (width 0.15))
-(gr_line (start 93.56299999999999 21.91) (end 110.9496649 26.568742800000003) (angle 90) (layer Edge.Cuts) (width 0.15))
-(gr_line (start 126.7535018 36.5729235) (end 140.4335018 12.8784684) (angle 90) (layer Edge.Cuts) (width 0.15))
-(gr_line (start 110.9496649 26.568742800000003) (end 126.7535018 36.5729235) (angle 90) (layer Edge.Cuts) (width 0.15))
-(gr_line (start 140.4335018 12.8784684) (end 140.32709037192762 12.819999999999993) (angle 90) (layer Edge.Cuts) (width 0.15))
-(gr_line (start 140.32709037192762 12.82) (end 140.4 12.82) (angle 90) (layer Edge.Cuts) (width 0.15))
+(gr_line (start 93.25699999999998 21.939) (end 110.64366489999999 26.5977428) (angle 90) (layer Edge.Cuts) (width 0.15))
+(gr_line (start 125.32703079999999 35.0614333) (end 138.16812827448888 12.819999999999965) (angle 90) (layer Edge.Cuts) (width 0.15))
+(gr_line (start 93.1 21.91) (end 93.25699999999998 21.939) (angle 90) (layer Edge.Cuts) (width 0.15))
+(gr_line (start 110.64366489999999 26.5977428) (end 125.32703079999999 35.0614333) (angle 90) (layer Edge.Cuts) (width 0.15))
+(gr_line (start 138.16812827448888 12.82) (end 140.4 12.82) (angle 90) (layer Edge.Cuts) (width 0.15))
 (gr_line (start 140.4 12.82) (end 140.4 -29.68) (angle 90) (layer Edge.Cuts) (width 0.15))
 (gr_line (start 140.4 -29.68) (end 118 -29.68) (angle 90) (layer Edge.Cuts) (width 0.15))
 (gr_line (start 9.25 8.25) (end 26.75 8.25) (angle 90) (layer Eco1.User) (width 0.15))
@@ -3873,14 +3873,14 @@
 (gr_line (start 92.85 21.66) (end 92.85 5.16) (angle 90) (layer Eco1.User) (width 0.15))
 (gr_line (start 92.85 5.16) (end 75.35 5.16) (angle 90) (layer Eco1.User) (width 0.15))
 (gr_line (start 75.35 5.16) (end 75.35 21.66) (angle 90) (layer Eco1.User) (width 0.15))
-(gr_line (start 93.8691862 21.7332233) (end 110.7728882 26.2625566) (angle 90) (layer Eco1.User) (width 0.15))
-(gr_line (start 110.7728882 26.2625566) (end 115.04340239999999 10.324780500000001) (angle 90) (layer Eco1.User) (width 0.15))
-(gr_line (start 115.04340239999999 10.324780500000001) (end 98.1397004 5.795447200000002) (angle 90) (layer Eco1.User) (width 0.15))
-(gr_line (start 98.1397004 5.795447200000002) (end 93.8691862 21.7332233) (angle 90) (layer Eco1.User) (width 0.15))
-(gr_line (start 126.66199549999999 36.2314171) (end 139.9119955 13.281743899999999) (angle 90) (layer Eco1.User) (width 0.15))
-(gr_line (start 139.9119955 13.281743899999999) (end 125.62257629999999 5.031743899999999) (angle 90) (layer Eco1.User) (width 0.15))
-(gr_line (start 125.62257629999999 5.031743899999999) (end 112.37257629999999 27.981417099999998) (angle 90) (layer Eco1.User) (width 0.15))
-(gr_line (start 112.37257629999999 27.981417099999998) (end 126.66199549999999 36.2314171) (angle 90) (layer Eco1.User) (width 0.15))
+(gr_line (start 93.56318619999999 21.762223300000002) (end 110.46688819999999 26.2915566) (angle 90) (layer Eco1.User) (width 0.15))
+(gr_line (start 110.46688819999999 26.2915566) (end 114.73740239999998 10.353780500000001) (angle 90) (layer Eco1.User) (width 0.15))
+(gr_line (start 114.73740239999998 10.353780500000001) (end 97.83370039999998 5.824447200000002) (angle 90) (layer Eco1.User) (width 0.15))
+(gr_line (start 97.83370039999998 5.824447200000002) (end 93.56318619999999 21.762223300000002) (angle 90) (layer Eco1.User) (width 0.15))
+(gr_line (start 125.23552449999998 34.7199269) (end 138.4855245 11.770253699999998) (angle 90) (layer Eco1.User) (width 0.15))
+(gr_line (start 138.4855245 11.770253699999998) (end 124.19610529999999 3.520253699999998) (angle 90) (layer Eco1.User) (width 0.15))
+(gr_line (start 124.19610529999999 3.520253699999998) (end 110.94610529999999 26.469926899999997) (angle 90) (layer Eco1.User) (width 0.15))
+(gr_line (start 110.94610529999999 26.469926899999997) (end 125.23552449999998 34.7199269) (angle 90) (layer Eco1.User) (width 0.15))
             
 )
 

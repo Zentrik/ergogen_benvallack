@@ -87,15 +87,16 @@ points:
           key:
             column_net: P18
         home:
-          spread: cx + 0.463
+          spread: 18.157
+          stagger: -0.029
           rotate: -15
           origin: [-0.5 cx, -0.5 cy]
           key:
             column_net: P15
         far:
-          spread: cx + 2.245
+          spread: 18.764
+          stagger: 4.984
           rotate: -15
-          stagger: 3.786
           origin: [-0.5 cx, -0.5 cy]
           key:
             column_net: P14
