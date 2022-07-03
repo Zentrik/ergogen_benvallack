@@ -13,6 +13,7 @@ module.exports = {
         ${p.at /* parametric position */}
 	  (descr "uxcell 3x6x4mm Momentary PCB SMT Surface Mounted Devices Rectangle Push Button SPST Tactile Tact Switch White 20PCS")
 	  (tags "Tactile Switch")
+	  (fp_text reference "${p.ref}" (at 0 0) (layer F.SilkS) ${p.ref_hide} (effects (font (size 1.27 1.27) (thickness 0.15))))
 	  (attr smd)
 	  (fp_circle (center 0 0) (end 0.75 0) (layer F.Fab) (width 0.1))
 
