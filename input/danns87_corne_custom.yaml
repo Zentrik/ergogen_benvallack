@@ -1,6 +1,17 @@
 units:
   px: 2
   py: 2
+  uc_pcb_x: 17.78
+  uc_pcb_y: 33.25
+  reset_x: 3.52
+  reset_y: 6
+  jst_x: 7.55
+  jst_y: 10.35
+
+  # Measured. Just the housing itself, modulo legs and plastic peg
+  pcm12_x: 6.7
+  pcm12_y: 2.75
+
 points:
   key:
     padding: cy
@@ -35,37 +46,37 @@ points:
           spread: cx
           key:
             column_net: P14
-            bind: [1,1,1,1]
+            bind: [0.5,0.5,0.5,0.5]
         pinky:
           stagger: 0 cy
           spread: cx
           key:
             column_net: P20
-            bind: [1,1,1,1]
+            bind: [0.5,0.5,0.5,0.5]
         ring:
           stagger: 0.70 cy
           spread: cx
           key:
             column_net: P19
-            bind: [1,1,1,1]
+            bind: [0.5,0.5,0.5,0.5]
         middle:
           stagger: 0.25 cy
           spread: cx
           key:
             column_net: P18
-            bind: [1,1,1,1]
+            bind: [0.8,0.5,0.5,0.5]
         index:
           stagger: -0.25 cy
           spread: cx
           key:
             column_net: P15
-            bind: [1,1,1,1]
+            bind: [1,0.5,0.5,0.5]
         inner:
           stagger: -0.2 cy
           spread: cx
           key:
             column_net: P14
-            bind: [1,1,1,1]
+            bind: [0.3,0.5,0.5,0.5]
       rows:
         bottom:
           row_net: P6
@@ -88,7 +99,7 @@ points:
           rotate: 15
           key:
             column_net: P18
-            bind: [1,1,1,1]
+            bind: [0.5,0.5,0.5,0.5]
         home:
           spread: cx
           stagger: 0
@@ -96,7 +107,7 @@ points:
           origin: [-0.5 cx, -0.5 cy]
           key:
             column_net: P15
-            bind: [1,1,1,1]
+            bind: [0.5,0.5,0.5,0.5]
         far:
           spread: cx
           stagger: 0
@@ -104,7 +115,7 @@ points:
           origin: [-0.5 cx, -0.5 cy]
           key:
             column_net: P14
-            bind: [1,1,1,1]
+            bind: [0.5,0.5,0.5,0.5]
             tags: 
               1u: true
               15u: false
@@ -152,17 +163,29 @@ outlines:
             shift: [0 cx, 0.5 cy]
 
           - ref: matrix_index_bottom
-            shift: [1.5 cx, 0.5 cy]
+            shift: [1.5 cx, 0 cy]
 
     uc_graft:
       main:
         type: rectangle
         anchor:
           ref:
-            - matrix_inner_home
-          shift: [0 cx, -1.25 cy]
+            - matrix_inner_top
+          shift: [0 cx - 2, 0.5 cy - 39.4 + 0.3 + 1.5 - 0.4]
           rotate: 0
-        size: [1.80 cx, 2.5 cy]
+        size: [1.80 cx - 2, 39.4 - 1.5 + 0.4]
+        #corner: px
+
+    # A single graft for the reset button and JST connector
+    reset_jst_graft:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - matrix_index_bottom
+          shift: [0 cx - 2, -0.5 cy]
+          rotate: 0
+        size: [2.80 cx - 2, 0.5cy + 7.4]
         #corner: px
 
 
@@ -170,24 +193,48 @@ outlines:
     # Outlines used for debugging/tuning the PCB cutout #
     #####################################################
     uc_outline_debug:
+      pcb:
+        type: rectangle
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [0.5cx + 1, 0.5 cy - uc_pcb_y - 0.5]
+          rotate: 0
+        size: [uc_pcb_x, uc_pcb_y]
+      magnetic_usb:
+        type: rectangle
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [0.5cx + 1 + uc_pcb_x/2 - 10.76/2, 0.5 cy - 0.5]
+        size: [10.76, 6.03]
+
+    jst_outline_debug:
       main:
         type: rectangle
         anchor:
           ref:
-            - matrix_inner_home
-          shift: [0.5cx + 2.5, -0.75 cy + 1]
-          rotate: 0
-        size: [17.78, 29.7]
+            - matrix_inner_top
+          shift: [0.5cx + 1, 0.5 cy - 2 - uc_pcb_y - jst_y]
+        size: [jst_x, jst_y]
 
     reset_outline_debug:
       main:
         type: rectangle
         anchor:
           ref:
-            - matrix_inner_home
-          shift: [1.5cx, -1.225 cy + 1]
-          rotate: 0
-        size: [3, 6]
+            - matrix_inner_top
+          shift: [0.5cx + 1 + jst_x + 3.5 , 0.5 cy - 2 - uc_pcb_y - jst_y + jst_y/2 - reset_y/2]
+        size: [reset_x, reset_y]
+
+    pcm12_outline_debug:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [0.5cx + 1 + uc_pcb_x/2 - pcm12_x/2, 0.5 cy + 0.5 - 5.5 - pcm12_y]
+        size: [pcm12_x, pcm12_y]
 
     #####################################
     # Outlines used for PCB User layers #
@@ -209,15 +256,13 @@ outlines:
     keycaps_outline:
       [keycaps1u, keycaps15u]
 
-    #####################################
-    # Outlines used for PCB User layers #
-    #####################################
-    pcb_cutout:
+    ####################################
+    # Outlines used for PCB Cut layers #
+    ####################################
+    pcb_cutout_composite:
       main:
         type: outline
         name: keys_outline
-        # TODO: Fix the fillets at the top of keys_outline
-        fillet: 2
       thumbfan_graft:
         type: outline
         name: thumbfan_graft
@@ -226,6 +271,17 @@ outlines:
         type: outline
         name: uc_graft
         operation: add
+      reset_jst_graft:
+        type: outline
+        name: reset_jst_graft
+        operation: add
+
+    # Fillets need to be applied on an separate, composite outline
+    # This allows the creation of fillets on corners created from the intersection of the underlying outlines
+    pcb_cutout:
+      main:
+        type: outline
+        name: pcb_cutout_composite
         fillet: 2
 
     pcb_cutout_debug:
@@ -241,12 +297,21 @@ outlines:
         type: outline
         name: uc_outline_debug
         operation: subtract
+      # PCM12 position is inaccurate
+      #pcm12_outline_debug:
+      #  type: outline
+      #  name: pcm12_outline_debug
+      #  operation: subtract
       reset_outline_debug:
         type: outline
         name: reset_outline_debug
         operation: subtract
+      jst_outline_debug:
+        type: outline
+        name: jst_outline_debug
+        operation: subtract
 pcbs:
-  danns87_corne:
+  danns87_corne_custom:
     outlines:
       edge:
         outline: pcb_cutout
@@ -255,22 +320,30 @@ pcbs:
       keycaps:
         outline: keycaps_outline
         layer: Eco1.User
+      uc:
+        outline: uc_outline_debug
+        layer: Eco1.User
+      reset:
+        outline: reset_outline_debug
+        layer: Eco1.User
+      jst:
+        outline: jst_outline_debug
+        layer: Eco1.User
     footprints:
       promicro:
         type: promicro_pretty
         anchor:
           ref:
-            - matrix_inner_home
-          #shift: [0.5cx + 2.5, -0.5cy + 1]
-          shift: [0.5cx + 2.5 + 17.78/2, -0.5cy + 1 + 29.7/2]
+            - matrix_inner_top
+          shift: [0.5cx + 1 + uc_pcb_x/2, 0.5 cy - uc_pcb_y - 0.5 + 29.7/2]
           rotate: -90
       pcm12:
         type: pcm12
         anchor:
           ref:
-            - matrix_inner_bottom
-          shift: [30, 0]
-          rotate: 90
+            - matrix_inner_top
+          shift: [0.5cx + 1 + uc_pcb_x/2 - pcm12_x/2 + 3.35, 0.5 cy + 0.5 - 5.5 - pcm12_y + 6.425]
+          rotate: 180
         nets:
           from: pos
           to: keys_outline
@@ -284,17 +357,17 @@ pcbs:
           r2: GND
         anchor:
           ref:
-            - thumbfan_far_thumb
-          shift: [0.75cx + 6/2, -3 + 3/2]
+            - matrix_inner_top
+          shift: [0.5cx + 1 + jst_x + 3.5 + reset_x/2, 0.5 cy - 2 - uc_pcb_y - jst_y + jst_y/2]
           rotate: 90
         params:
           reverse: true
       bat:
-        # TODO: Double check dimensions and add component outline
         type: bat2p54
         nets:
           neg: GND
         anchor:
           ref:
-            - matrix_inner_bottom
-          shift: [22, 0]
+            - matrix_inner_top
+          shift: [0.5cx + 1 + jst_x/2, 0.5 cy - 2 - uc_pcb_y - jst_y]
+          rotate: 90
