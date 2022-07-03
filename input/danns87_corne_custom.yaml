@@ -45,8 +45,8 @@ points:
           stagger: 0 cy
           spread: cx
           key:
-            column_net: P14
-            bind: [0.5,0.5,0.5,0.5]
+            column_net: P21
+            bind: [0.5,0.5,0.5,1]
         pinky:
           stagger: 0 cy
           spread: cx
@@ -64,19 +64,19 @@ points:
           spread: cx
           key:
             column_net: P18
-            bind: [0.8,0.5,0.5,0.5]
+            bind: [1.4,0.5,0.5,0.5]
         index:
           stagger: -0.25 cy
           spread: cx
           key:
             column_net: P15
-            bind: [1,0.5,0.5,0.5]
+            bind: [1.6,0.5,0.5,0.5]
         inner:
           stagger: -0.2 cy
           spread: cx
           key:
             column_net: P14
-            bind: [0.3,0.5,0.5,0.5]
+            bind: [0.9,0.5,0.5,0.5]
       rows:
         bottom:
           row_net: P6
@@ -171,7 +171,7 @@ outlines:
         anchor:
           ref:
             - matrix_inner_top
-          shift: [0 cx - 2, 0.5 cy - 39.4 + 0.3 + 1.5 - 0.4]
+          shift: [0 cx - 2, 0.5 cy - 39.4 + 0.3 + 1.5 + 0.2]
           rotate: 0
         size: [1.80 cx - 2, 39.4 - 1.5 + 0.4]
         #corner: px
@@ -345,8 +345,8 @@ pcbs:
           shift: [0.5cx + 1 + uc_pcb_x/2 - pcm12_x/2 + 3.35, 0.5 cy + 0.5 - 5.5 - pcm12_y + 6.425]
           rotate: 180
         nets:
-          from: pos
-          to: keys_outline
+          from: pos  
+          to: RAW
         params:
           reverse: true
       reset:
