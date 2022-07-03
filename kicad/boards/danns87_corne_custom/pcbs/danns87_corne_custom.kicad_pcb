@@ -65,9 +65,9 @@
       (subtractmaskfromsilk false)
       (outputformat 1)
       (mirror false)
-      (drillshape 1)
+      (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "")
+      (outputdirectory "gerber/")
     )
   )
 
@@ -4305,6 +4305,9 @@
   (gr_arc (start 76.622379 6.986969) (mid 76.82218 5.469331) (end 78.036593 4.537479) (layer "Edge.Cuts") (width 0.15) (tstamp e463ba2a-1cbc-4995-82d8-59710b3fcd2f))
   (gr_line (start 136.4 -5.4) (end 136.4 -49.9) (layer "Edge.Cuts") (width 0.15) (tstamp e5889358-36b5-4652-9d71-4d4aa652a144))
   (gr_arc (start 134.4 -51.9) (mid 135.814214 -51.314214) (end 136.4 -49.9) (layer "Edge.Cuts") (width 0.15) (tstamp ed9596e5-f4f2-4fc2-bb34-16ad21b3b120))
+  (gr_text "JLCJLCJLCJLC" (at 129.54 -31.75 90) (layer "F.SilkS") (tstamp a82dccd0-c2cd-4bf9-86b4-efddd3a8276f)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
 
   (segment (start 20.3908 -5.0658) (end 20.3908 3.3339) (width 0.25) (layer "F.Cu") (net 1) (tstamp 08ea73d9-b82c-41dc-bb2a-d12314dfd682))
   (segment (start 21.81 5) (end 19.65 5) (width 0.25) (layer "F.Cu") (net 1) (tstamp 1fce8e02-82e8-4e7b-8f74-05bef82294b8))
