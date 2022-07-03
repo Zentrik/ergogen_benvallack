@@ -58,7 +58,7 @@ points:
           spread: cx
           key:
             column_net: P19
-            bind: [0.5,0.5,0.5,0.5]
+            bind: [0.5,0.5,0.5,1]
         middle:
           stagger: 0.25 cy
           spread: cx
@@ -99,7 +99,7 @@ points:
           rotate: 15
           key:
             column_net: P18
-            bind: [0.5,0.5,0.5,0.5]
+            bind: [0.5,0.5,0.5,1]
         home:
           spread: cx
           stagger: 0
@@ -115,7 +115,7 @@ points:
           origin: [-0.5 cx, -0.5 cy]
           key:
             column_net: P14
-            bind: [0.5,0.5,0.5,0.5]
+            bind: [0.5,1,0.5,0.5]
             tags: 
               1u: true
               15u: false
