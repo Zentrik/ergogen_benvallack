@@ -215,7 +215,7 @@ outlines:
         anchor:
           ref:
             - matrix_inner_top
-          shift: [0.5cx + 1, 0.5 cy - 2 - uc_pcb_y - jst_y]
+          shift: [0.5cx + 1 + 2.6, 0.5 cy - 2 - uc_pcb_y - jst_y]
         size: [jst_x, jst_y]
 
     reset_outline_debug:
@@ -224,7 +224,7 @@ outlines:
         anchor:
           ref:
             - matrix_inner_top
-          shift: [0.5cx + 1 + jst_x + 3.5 , 0.5 cy - 2 - uc_pcb_y - jst_y + jst_y/2 - reset_y/2]
+          shift: [0.5cx + 1 + jst_x + 3.5 + 2.6/2, 0.5 cy - 2 - uc_pcb_y - jst_y + jst_y/2 - reset_y/2]
         size: [reset_x, reset_y]
 
     pcm12_outline_debug:
@@ -358,7 +358,7 @@ pcbs:
         anchor:
           ref:
             - matrix_inner_top
-          shift: [0.5cx + 1 + jst_x + 3.5 + reset_x/2, 0.5 cy - 2 - uc_pcb_y - jst_y + jst_y/2]
+          shift: [0.5cx + 1 + jst_x + 3.5 + 2.6/2 + reset_x/2, 0.5 cy - 2 - uc_pcb_y - jst_y + jst_y/2]
           rotate: 90
         params:
           reverse: true
@@ -369,5 +369,6 @@ pcbs:
         anchor:
           ref:
             - matrix_inner_top
-          shift: [0.5cx + 1 + jst_x/2, 0.5 cy - 2 - uc_pcb_y - jst_y]
+          shift: [0.5cx + 1 + 2.6 + jst_x/2, 0.5 cy - 2 - uc_pcb_y - jst_y]
           rotate: 90
+
