@@ -19,36 +19,36 @@ jobs:
       - name: Export DSN for main PCB
         uses: ./.github/actions/export-dsn
         with:
-          pcb_file: output/pcbs/board.kicad_pcb
-          dsn_file: output/pcbs/board.dsn
+          pcb_file: kicad/boards/zentrik_kyria_custom/pcbs/board.kicad_pcb
+          dsn_file: kicad/boards/zentrik_kyria_custom/pcbs/board.dsn
       - name: Autoroute main PCB
         uses: ./.github/actions/autoroute
         with:
-          dsn_file: output/pcbs/board.dsn
-          ses_file: output/pcbs/board.ses
+          dsn_file: kicad/boards/zentrik_kyria_custom/pcbs/board.dsn
+          ses_file: kicad/boards/zentrik_kyria_custom/pcbs/board.ses
       - name: Import SES into main PCB
         uses: ./.github/actions/import-ses
         with:
-          pcb_input_file: output/pcbs/board.kicad_pcb
-          pcb_output_file: output/pcbs/board_routed.kicad_pcb
-          ses_file: output/pcbs/board.ses
+          pcb_input_file: kicad/boards/zentrik_kyria_custom/pcbs/board.kicad_pcb
+          pcb_output_file: kicad/boards/zentrik_kyria_custom/pcbs/board_routed.kicad_pcb
+          ses_file: kicad/boards/zentrik_kyria_custom/pcbs/board.ses
       - name: Export Gerbers for top plate
         uses: ./.github/actions/export-gerbers
         with:
-          pcb_file: output/pcbs/top_plate.kicad_pcb
-          gerbers_dir: output/gerbers/top_plate
+          pcb_file: kicad/boards/zentrik_kyria_custom/pcbs/top_plate.kicad_pcb
+          gerbers_dir: kicad/boards/zentrik_kyria_custom/gerbers/top_plate
       - name: Export Gerbers for bottom plate
         uses: ./.github/actions/export-gerbers
         with:
-          pcb_file: output/pcbs/bottom_plate.kicad_pcb
-          gerbers_dir: output/gerbers/bottom_plate
+          pcb_file: kicad/boards/zentrik_kyria_custom/pcbs/bottom_plate.kicad_pcb
+          gerbers_dir: kicad/boards/zentrik_kyria_custom/gerbers/bottom_plate
       - name: Export Gerbers for main PCB
         uses: ./.github/actions/export-gerbers
         with:
-          pcb_file: output/pcbs/board.kicad_pcb
-          gerbers_dir: output/gerbers/board
+          pcb_file: kicad/boards/zentrik_kyria_custom/pcbs/board.kicad_pcb
+          gerbers_dir: kicad/boards/zentrik_kyria_custom/gerbers/board
       - name: Persist output
         uses: actions/upload-artifact@v2
         with:
-          name: samoklava-routed-pcbs-and-gerbers
-          path: output
+          name: zentrik-routed-pcbs-and-gerbers
+          path: kicad/boards/zentrik_kyria_custom
