@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Generate unrouted PCBs
-        run: npm installnode src/cli.js input/zentrik_kyria_custom.yaml -o kicad/zentrik_kyria_custom.yaml
+        run: node src/cli.js input/zentrik_kyria_custom.yaml -o kicad/boards/zentrik_kyria_custom
       - name: Export DSN for main PCB
         uses: ./.github/actions/export-dsn
         with:
