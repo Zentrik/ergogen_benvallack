@@ -50,39 +50,39 @@ points:
           spread: cx
           key:
             column_net: P20
-            bind: [0.5,0.5,0.5,0.5]
+            bind: [0.5,6.2,0.5,0.5]
         ring:
-          stagger: 0.70 cy
+          stagger: 15
           spread: cx
           key:
             column_net: P19
             bind: [0.5,0.5,0.5,1]
         middle:
-          stagger: 0.25 cy
+          stagger: 8
           spread: cx
           key:
             column_net: P18
             bind: [1.4,0.5,0.5,0.5]
         index:
-          stagger: -0.25 cy
+          stagger: -4
           spread: cx
           key:
             column_net: P15
             bind: [1.6,0.5,0.5,0.5]
         inner:
-          stagger: -0.2 cy
+          stagger: -6
           spread: cx
           key:
             column_net: P14
             bind: [0.9,0.5,0.5,0.5]
-        far_inner:
-          stagger: -0.2 cy
-          spread: cx
-          row_overrides:
-            bottom:
-          key:
-            column_net: P13
-            bind: [0.9,0.5,0.5,0.5]
+        #far_inner:
+        #  stagger: -10
+        #  spread: cx
+        #  row_overrides:
+        #    bottom:
+        #  key:
+        #    column_net: P13
+        #    bind: [0.9,1.4,17,0.5]
       rows:
         bottom:
           row_net: P6
@@ -104,14 +104,14 @@ points:
           rotate: 10
           key:
             column_net: P20
-            bind: [0.5,0.5,0.5,1]
+            bind: [20,4,0.5,0.5]
         inner:
           spread: cx + 0.6
           origin: [-0.5 cx, -0.5 cy]
           rotate: -10
           key:
             column_net: P19
-            bind: [0.5,0.5,0.5,0.5]
+            bind: [20,0.5,.5,2]
         home:
           spread: cx
           stagger: 0
@@ -134,7 +134,7 @@ points:
           rotate: -25
           key:
             column_net: P14
-            bind: [0.5,1,0.5,0.5]
+            bind: [0.5,1,0.5,10]
           
 outlines:
   # board dimensions according to JLCPCB: 122.28 mm x 101.05 mm
@@ -177,6 +177,14 @@ outlines:
 
           - ref: matrix_index_bottom
             shift: [1.5 cx, 0 cy]
+      - type: rectangle
+        anchor:
+          ref:
+            - matrix_index_bottom
+          shift: [cx + 10.4, -7.4-29]
+          rotate: 0
+        size: [cx, 28]
+
 
     uc_graft:
       main:
@@ -285,7 +293,7 @@ outlines:
       main:
         type: outline
         name: pcb_cutout_composite
-        fillet: 2
+        fillet: 1.89
 
     pcb_cutout_debug:
       main:
