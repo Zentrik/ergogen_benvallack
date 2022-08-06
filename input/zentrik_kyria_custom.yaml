@@ -52,13 +52,13 @@ points:
             column_net: P20
             bind: [0.5,6.2,0.5,0.5]
         ring:
-          stagger: 15
+          stagger: 26
           spread: cx
           key:
             column_net: P19
             bind: [0.5,0.5,0.5,1]
         middle:
-          stagger: 8
+          stagger: 10
           spread: cx
           key:
             column_net: P18
@@ -70,7 +70,7 @@ points:
             column_net: P15
             bind: [1.6,0.5,0.5,0.5]
         inner:
-          stagger: -6
+          stagger: -1
           spread: cx
           key:
             column_net: P14
@@ -93,7 +93,7 @@ points:
     thumbfan:
       anchor:
         ref: matrix_ring_bottom
-        shift: [0, -23]
+        shift: [0.5, -23.5]
       rows:
         thumb:
           row_net: P7
@@ -101,37 +101,39 @@ points:
         far_inner:
           spread: 8
           origin: [-0.5 cx, -0.5 cy]
-          rotate: 10
+          rotate: 15
           key:
             column_net: P20
             bind: [20,4,0.5,0.5]
         inner:
-          spread: cx + 0.6
+          spread: cx
+          stagger: 0
           origin: [-0.5 cx, -0.5 cy]
-          rotate: -10
+          rotate: -5
           key:
             column_net: P19
             bind: [20,0.5,.5,2]
         home:
           spread: cx
-          stagger: 0
-          rotate: -10
+          stagger: -5
+          rotate: -5
           origin: [-0.5 cx, -0.5 cy]
           key:
             column_net: P18
             bind: [0.5,0.5,0.5,0.5]
         outer:
-          spread: cx
-          stagger: 0
-          rotate: -25
+          spread: cx - 1
+          stagger: -5
+          rotate: -10
           origin: [-0.5 cx, -0.5 cy]
           key:
             column_net: P15
             bind: [0.5,0.5,0.5,0.5]
         far_outer:
-          spread: cx
+          spread: cx - 3
+          stagger: -10
           origin: [-0.5 cx, -0.5 cy]
-          rotate: -25
+          rotate: -20
           key:
             column_net: P14
             bind: [0.5,1,0.5,10]
