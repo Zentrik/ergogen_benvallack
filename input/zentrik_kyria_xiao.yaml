@@ -1,0 +1,341 @@
+units:
+  px: 2
+  py: 2
+  uc_pcb_x: 17.78
+  uc_pcb_y: 33.25
+  reset_x: 3.52
+  reset_y: 6
+  jst_x: 7.55
+  jst_y: 10.35
+
+  # Measured. Just the housing itself, modulo legs and plastic peg
+  pcm12_x: 6.7
+  pcm12_y: 2.75
+
+  xiao_x: 17.5
+  xiao_y: 20
+
+points:
+  key:
+    padding: cy
+    footprints:
+      choc_hotswap:
+        type: choc
+        params:
+          hotswap: true
+          reverse: true
+          keycaps: true
+        nets:
+          # from: P1
+          # to: P2
+          from: =colrow
+          to: =column_net
+      diode:
+        type: diode
+        nets:
+          # from: P3
+          # to: P4
+          from: =colrow
+          to: =row_net
+        anchor:
+          shift: [0, -5]
+  zones:
+    matrix:
+      columns:
+        outer:
+          stagger: 0 cy
+          spread: cx
+          key:
+            column_net: P0
+            bind: [1.5,0.5,0.5,1]
+        pinky:
+          stagger: 0 cy
+          spread: cx
+          key:
+            column_net: P1
+            bind: [1.5,60,0.5,0.5]
+        ring:
+          stagger: 26
+          spread: cx
+          key:
+            column_net: P2
+            bind: [1,0.5,0.5,1]
+        middle:
+          stagger: 10
+          spread: cx
+          key:
+            column_net: P3
+            bind: [2.4,0.5,0.5,1]
+        index:
+          stagger: -4
+          spread: cx
+          key:
+            column_net: P7
+            bind: [2.6,0.5,0.5,0.5]
+        inner:
+          stagger: -1
+          spread: cx
+          key:
+            column_net: P4
+            bind: [3.6,0.5,0.5,0.5]
+        #far_inner:
+        #  stagger: -10
+        #  spread: cx
+        #  row_overrides:
+        #    bottom:
+        #  key:
+        #    column_net: P13
+        #    bind: [0.9,1.4,17,0.5]
+      rows:
+        bottom:
+          row_net: P8
+        home:
+          row_net: P9
+        top:
+          row_net: P10
+    thumbfan:
+      anchor:
+        ref: matrix_ring_bottom
+        shift: [0.5, -21.5]
+      rows:
+        thumb:
+          row_net: P6
+      columns:
+        far_inner:
+          spread: 8
+          origin: [-0.5 cx, -0.5 cy]
+          rotate: 15
+          key:
+            column_net: P1
+            bind: [20,4,0.5,0.5]
+        inner:
+          spread: cx
+          stagger: 0
+          origin: [-0.5 cx, -0.5 cy]
+          rotate: -5
+          key:
+            column_net: P2
+            bind: [20,0.5,.5,2]
+        home:
+          spread: cx
+          stagger: -5
+          rotate: -5
+          origin: [-0.5 cx, -0.5 cy]
+          key:
+            column_net: P3
+            bind: [0.5,0.5,0.5,0.5]
+        outer:
+          spread: cx - 1
+          stagger: -5
+          rotate: -10
+          origin: [-0.5 cx, -0.5 cy]
+          key:
+            column_net: P7
+            bind: [13,0.5,0.5,0.5]
+        far_outer:
+          spread: cx - 3
+          stagger: -10
+          origin: [-0.5 cx, -0.5 cy]
+          rotate: -20
+          key:
+            column_net: P4
+            bind: [1,1,0.5,30]
+  zones.mcu:
+    anchor:
+      ref: matrix_inner_top
+      shift: [cx + 2, 0]
+    key:
+      name: mcu
+      width: xiao_x
+      height: xiao_y
+      footprints:
+      - type: xiao
+        anchor:
+          shift: [-0.5xiao_x, -0.5xiao_y]
+          
+outlines:
+  # board dimensions according to JLCPCB: 122.28 mm x 101.05 mm
+  exports:
+
+    keys_outline:
+      - type: keys
+        side: left
+        #size: [cx + px, cy + py]
+        size: [cx, cy]
+        #corner: px
+
+    ##################################################
+    # Grafted-on PCB areas to accommodate footprints #
+    ##################################################
+    thumbfan_graft:
+      - type: polygon
+        points:
+          - ref: matrix_index_bottom
+            shift: [0.5 cx, 0 cy]
+
+          - ref: thumbfan_inner_thumb
+            shift: [0 cx, 0.5 cy]
+          - ref: thumbfan_inner_thumb
+            shift: [0 cx, -0.5 cy]
+          - ref: thumbfan_inner_thumb
+            shift: [0.5 cx, -0.5 cy]
+
+          - ref: thumbfan_home_thumb
+            shift: [-0.5 cx, -0.5 cy]
+          - ref: thumbfan_home_thumb
+            shift: [0.5 cx, -0.5 cy]
+
+          - ref: thumbfan_outer_thumb
+            shift: [-0.5 cx, -0.5 cy]
+          - ref: thumbfan_outer_thumb
+            shift: [0 cx, -0.5 cy]
+          - ref: thumbfan_outer_thumb
+            shift: [0 cx, 0.5 cy]
+
+          - ref: matrix_index_bottom
+            shift: [1.5 cx, 0 cy]
+      - type: rectangle
+        anchor:
+          ref:
+            - matrix_index_bottom
+          shift: [cx + 10.4, -7.4-29.3]
+          rotate: 0
+        size: [cx + 2, 45]
+
+    thumbfan_arc:
+      - type: circle
+        anchor:
+          ref:
+            - thumbfan_outer_thumb
+          shift: [-30, -73.5]
+          rotate: 0
+        radius: 65
+
+    uc_graft:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [0 cx - 2, 0.5 cy - 39.4 + 0.3 + 1.5 + 0.2]
+          rotate: 0
+        size: [1.80 cx - 2 + 2, 39.4 - 1.5 + 0.4 + 2.7]
+        #corner: px
+
+    # A single graft for the reset button and JST connector
+    jst_graft:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - matrix_index_bottom
+          shift: [0 cx - 2, -0.5 cy]
+          rotate: 0
+        size: [2.80 cx - 2, 0.5cy + 7.4]
+        #corner: px
+
+
+    #####################################################
+    # Outlines used for debugging/tuning the PCB cutout #
+    #####################################################
+
+    jst_outline_debug:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [0.5cx + 1 + 2.6, 0.5 cy - 2 - uc_pcb_y - jst_y]
+        size: [jst_x, jst_y]
+
+
+    #####################################
+    # Outlines used for PCB User layers #
+    #####################################
+    keycaps_outline:
+      main:
+        type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false
+
+    ####################################
+    # Outlines used for PCB Cut layers #
+    ####################################
+    pcb_cutout_composite:
+      main:
+        type: outline
+        name: keys_outline
+      thumbfan_graft:
+        type: outline
+        name: thumbfan_graft
+        operation: add
+      uc_graft:
+        type: outline
+        name: uc_graft
+        operation: add
+      jst_graft:
+        type: outline
+        name: jst_graft
+        operation: add
+      thumbfan_arc:
+        type: outline
+        name: thumbfan_arc
+        operation: subtract
+
+    # Fillets need to be applied on an separate, composite outline
+    # This allows the creation of fillets on corners created from the intersection of the underlying outlines
+    pcb_cutout:
+      main:
+        type: outline
+        name: pcb_cutout_composite
+        fillet: 1.89
+
+    pcb_cutout_debug:
+      main:
+        type: outline
+        name: pcb_cutout
+      keycaps_outline:
+        type: outline
+        name: keycaps_outline
+        operation: subtract
+        fillet: px
+      jst_outline_debug:
+        type: outline
+        name: jst_outline_debug
+        operation: subtract
+pcbs:
+  zentrik_kyria_xiao:
+    outlines:
+      edge:
+        outline: pcb_cutout
+        layer: Edge.Cuts
+        # TODO there's a way to add stuff to the silkscreen layer
+      keycaps:
+        outline: keycaps_outline
+        layer: Eco1.User
+      jst:
+        outline: jst_outline_debug
+        layer: Eco1.User
+    footprints:
+      pcm12:
+        type: pcm12
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [0.5cx + 1 + uc_pcb_x/2 - pcm12_x/2 + 3.35 + 8, 0.5 cy + 0.5 - 5.5 - pcm12_y + 6.425 - 42]
+          rotate: 90
+        nets:
+          from: pos  
+          to: RAW
+        params:
+          reverse: true
+      bat:
+        type: bat2p54
+        nets:
+          neg: GND
+        anchor:
+          ref:
+            - matrix_inner_top
+          shift: [0.5cx + 1 + 2.6 + jst_x/2, 0.5 cy - 2 - uc_pcb_y - jst_y]
+          rotate: 90

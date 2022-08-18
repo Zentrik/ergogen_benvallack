@@ -23,4 +23,5 @@ module.exports = {
     b3u1000p: require('./b3u1000p'),
     uxcellsmdspst: require('./uxcellsmdspst'),
     bat2p54: require('./bat2p54'),
+    xiao: require('./xiao')
 }
