@@ -120,3 +120,5 @@ output
 temp*
 .DS_Store
 *.swp
+
+kicad/
