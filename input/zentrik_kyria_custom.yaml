@@ -44,37 +44,37 @@ points:
           spread: cx
           key:
             column_net: P21
-            bind: [0.5,0.5,0.5,1]
+            bind: [1.5,0.5,0.5,1]
         pinky:
           stagger: 0 cy
           spread: cx
           key:
             column_net: P20
-            bind: [0.5,6.2,0.5,0.5]
+            bind: [1.5,60,0.5,0.5]
         ring:
           stagger: 26
           spread: cx
           key:
             column_net: P19
-            bind: [0.5,0.5,0.5,1]
+            bind: [1,0.5,0.5,1]
         middle:
           stagger: 10
           spread: cx
           key:
             column_net: P18
-            bind: [1.4,0.5,0.5,0.5]
+            bind: [2.4,0.5,0.5,1]
         index:
           stagger: -4
           spread: cx
           key:
-            column_net: P15
-            bind: [1.6,0.5,0.5,0.5]
+            column_net: P8
+            bind: [2.6,0.5,0.5,0.5]
         inner:
           stagger: -1
           spread: cx
           key:
-            column_net: P14
-            bind: [0.9,0.5,0.5,0.5]
+            column_net: P10
+            bind: [3.6,0.5,0.5,0.5]
         #far_inner:
         #  stagger: -10
         #  spread: cx
@@ -85,18 +85,18 @@ points:
         #    bind: [0.9,1.4,17,0.5]
       rows:
         bottom:
-          row_net: P6
+          row_net: P7
         home:
-          row_net: P5
-        top:
           row_net: P4
+        top:
+          row_net: P3
     thumbfan:
       anchor:
         ref: matrix_ring_bottom
-        shift: [0.5, -23.5]
+        shift: [0.5, -21.5]
       rows:
         thumb:
-          row_net: P7
+          row_net: P9
       columns:
         far_inner:
           spread: 8
@@ -127,16 +127,16 @@ points:
           rotate: -10
           origin: [-0.5 cx, -0.5 cy]
           key:
-            column_net: P15
-            bind: [0.5,0.5,0.5,0.5]
+            column_net: P8
+            bind: [13,0.5,0.5,0.5]
         far_outer:
           spread: cx - 3
           stagger: -10
           origin: [-0.5 cx, -0.5 cy]
           rotate: -20
           key:
-            column_net: P14
-            bind: [0.5,1,0.5,10]
+            column_net: P10
+            bind: [1,1,0.5,30]
           
 outlines:
   # board dimensions according to JLCPCB: 122.28 mm x 101.05 mm
@@ -183,10 +183,18 @@ outlines:
         anchor:
           ref:
             - matrix_index_bottom
-          shift: [cx + 10.4, -7.4-29]
+          shift: [cx + 10.4, -7.4-29.3]
           rotate: 0
-        size: [cx, 28]
+        size: [cx + 2, 45]
 
+    thumbfan_arc:
+      - type: circle
+        anchor:
+          ref:
+            - thumbfan_outer_thumb
+          shift: [-30, -73.5]
+          rotate: 0
+        radius: 65
 
     uc_graft:
       main:
@@ -196,7 +204,7 @@ outlines:
             - matrix_inner_top
           shift: [0 cx - 2, 0.5 cy - 39.4 + 0.3 + 1.5 + 0.2]
           rotate: 0
-        size: [1.80 cx - 2, 39.4 - 1.5 + 0.4]
+        size: [1.80 cx - 2 + 2, 39.4 - 1.5 + 0.4 + 2.7]
         #corner: px
 
     # A single graft for the reset button and JST connector
@@ -221,16 +229,16 @@ outlines:
         anchor:
           ref:
             - matrix_inner_top
-          shift: [0.5cx + 1, 0.5 cy - uc_pcb_y - 0.5]
+          shift: [1.5 + 0.5cx + 1, 0.5 cy - uc_pcb_y - 0.5]
           rotate: 0
         size: [uc_pcb_x, uc_pcb_y]
-      magnetic_usb:
-        type: rectangle
-        anchor:
-          ref:
-            - matrix_inner_top
-          shift: [0.5cx + 1 + uc_pcb_x/2 - 10.76/2, 0.5 cy - 0.5]
-        size: [10.76, 6.03]
+      #magnetic_usb:
+      #  type: rectangle
+      #  anchor:
+      #    ref:
+      #      - matrix_inner_top
+      #    shift: [0.5cx + 1 + uc_pcb_x/2 - 10.76/2, 0.5 cy - 0.5]
+      #  size: [10.76, 6.03]
 
     jst_outline_debug:
       main:
@@ -288,6 +296,10 @@ outlines:
         type: outline
         name: reset_jst_graft
         operation: add
+      thumbfan_arc:
+        type: outline
+        name: thumbfan_arc
+        operation: subtract
 
     # Fillets need to be applied on an separate, composite outline
     # This allows the creation of fillets on corners created from the intersection of the underlying outlines
@@ -348,7 +360,7 @@ pcbs:
         anchor:
           ref:
             - matrix_inner_top
-          shift: [0.5cx + 1 + uc_pcb_x/2, 0.5 cy - uc_pcb_y - 0.5 + 29.7/2]
+          shift: [1.5 + 0.5cx + 1 + uc_pcb_x/2, 0.5 cy - uc_pcb_y - 0.5 + 29.7/2]
           rotate: -90
       pcm12:
         type: pcm12
