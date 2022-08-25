@@ -16,7 +16,9 @@ module.exports = {
         C: undefined
     },
     params: {
-        class: 'ROT'
+        class: 'ROT',
+        // By placing a model in the path specified below KiCad will show it in the 3D viewer
+        model: './3d/ROT_EC11N.step'
     },
     body: p => `
         (module rotary_encoder (layer F.Cu) (tedit 603326DE)
@@ -66,7 +68,13 @@ module.exports = {
 
             ${''/* Legs */}
             (pad "" thru_hole rect (at -0.12 -5.64 ${p.rot}) (size 3.2 2) (drill oval 2.8 1.5) (layers *.Cu *.Mask))
-            (pad "" thru_hole rect (at -0.12 5.56 ${p.rot})  (size 3.2 2) (drill oval 2.8 1.5) (layers *.Cu *.Mask))
+            (pad "" thru_hole rect (at -0.12 5.56 ${p.rot}) (size 3.2 2) (drill oval 2.8 1.5) (layers *.Cu *.Mask))
+        
+            (model ${p.param.model}
+                (at (xyz -0.3 0.1 0))
+                (scale (xyz 1 1 1))
+                (rotate (xyz 0 0 0))
+            )
         )
     `
 }

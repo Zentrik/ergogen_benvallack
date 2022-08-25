@@ -21,7 +21,9 @@ module.exports = {
       class: 'S',
       hotswap: false,
       reverse: false,
-      keycaps: false
+      keycaps: false,
+      // By placing a model in the path specified below KiCad will show it in the 3D viewer
+      model: './3d/SW_Cherry_MX_PCB.stp'
   },
   body: p => {
     const standard = `
@@ -64,8 +66,8 @@ module.exports = {
         (pad "" np_thru_hole circle (at ${def_neg}3.81 -2.54) (size 3 3) (drill 3) (layers *.Cu *.Mask))
         
         ${'' /* net pads */}
-        (pad 1 smd rect (at ${def_neg}7.085 -2.54 180) (size 2.55 2.5) (layers ${def_side}.Cu ${def_side}.Paste ${def_side}.Mask) ${p.net.from.str})
-        (pad 2 smd rect (at ${def_pos}5.842 -5.08 180) (size 2.55 2.5) (layers ${def_side}.Cu ${def_side}.Paste ${def_side}.Mask) ${p.net.to.str})
+        (pad 1 smd rect (at ${def_neg}7.085 -2.54 ${p.rot+180}) (size 2.55 2.5) (layers ${def_side}.Cu ${def_side}.Paste ${def_side}.Mask) ${p.net.from.str})
+        (pad 2 smd rect (at ${def_pos}5.842 -5.08 ${p.rot+180}) (size 2.55 2.5) (layers ${def_side}.Cu ${def_side}.Paste ${def_side}.Mask) ${p.net.to.str})
         `
       } else {
           return `
@@ -75,19 +77,19 @@ module.exports = {
           `
       }
     }
-    if(p.param.reverse){
+
       return `
         ${standard}
         ${p.param.keycaps ? keycap : ''}
         ${pins('-', '', 'B')}
-        ${pins('', '-', 'F')})
+        ${p.param.reverse ? pins('', '-', 'F') : ''}
+        
+         (model ${p.param.model}
+            (at (xyz 0 0 0))
+            (scale (xyz 1 1 1))
+            (rotate (xyz 0 0 0))
+        )
+        )
         `
-    } else {
-      return `
-        ${standard}
-        ${p.param.keycaps ? keycap : ''}
-        ${pins('-', '', 'B')})
-        `
-    }
   }
 }
