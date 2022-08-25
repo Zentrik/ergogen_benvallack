@@ -70,13 +70,13 @@ points:
           stagger: -4
           spread: cx
           key:
-            column_net: P7
+            column_net: P8
             bind: [2.6,0.5,0.5,0.5]
         inner:
           stagger: -1
           spread: cx
           key:
-            column_net: P4
+            column_net: P6
             bind: [3.6,0.5,0.5,0.5]
         #far_inner:
         #  stagger: -10
@@ -88,18 +88,18 @@ points:
         #    bind: [0.9,1.4,17,0.5]
       rows:
         bottom:
-          row_net: P8
-        home:
           row_net: P9
+        home:
+          row_net: P5
         top:
-          row_net: P10
+          row_net: P4
     thumbfan:
       anchor:
         ref: matrix_ring_bottom
         shift: [0.5, -21.5]
       rows:
         thumb:
-          row_net: P6
+          row_net: P7
       columns:
         far_inner:
           spread: 8
@@ -130,7 +130,7 @@ points:
           rotate: -10
           origin: [-0.5 cx, -0.5 cy]
           key:
-            column_net: P7
+            column_net: P8
             bind: [13,0.5,0.5,0.5]
         far_outer:
           spread: cx - 3
@@ -138,7 +138,7 @@ points:
           origin: [-0.5 cx, -0.5 cy]
           rotate: -20
           key:
-            column_net: P4
+            column_net: P6
             bind: [1,1,0.5,30]
   zones.mcu:
     anchor:
@@ -327,7 +327,7 @@ pcbs:
           rotate: 90
         nets:
           from: pos  
-          to: RAW
+          to: Battery+
         params:
           reverse: true
       bat:
