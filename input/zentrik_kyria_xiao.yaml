@@ -245,7 +245,7 @@ outlines:
         anchor:
           ref:
             - matrix_inner_top
-          shift: [0.5cx + 1 + 2.6, 0.5 cy - 2 - uc_pcb_y - jst_y]
+          shift: [0.5cx + 1 + 2.6, 0.5 cy - 2 - uc_pcb_y - jst_y - 5]
         size: [jst_x, jst_y]
 
 
@@ -337,5 +337,5 @@ pcbs:
         anchor:
           ref:
             - matrix_inner_top
-          shift: [0.5cx + 1 + 2.6 + jst_x/2, 0.5 cy - 2 - uc_pcb_y - jst_y]
+          shift: [0.5cx + 1 + 2.6 + jst_x/2, 0.5 cy - 2 - uc_pcb_y - jst_y - 5]
           rotate: 90
